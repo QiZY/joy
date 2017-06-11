@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StudenttuitionMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into TB_STUDENTTUITION(
+			CLASSINFO_ID,	
+			CLASS_NAME,	
+			STUDENT_ID,	
+			NAME,	
+			AMOUNT,	
+			TUITION_EXPIRE_TIME,	
+			TUITION_PAY_TIME,	
+			CREATE_USER_ID,	
+			CREATE_TIME,	
+			STUDENTTUITION_ID
+		) values (
+			#{CLASSINFO_ID},	
+			#{CLASS_NAME},	
+			#{STUDENT_ID},	
+			#{NAME},	
+			#{AMOUNT},	
+			#{TUITION_EXPIRE_TIME},	
+			#{TUITION_PAY_TIME},	
+			#{CREATE_USER_ID},	
+			#{CREATE_TIME},	
+			#{STUDENTTUITION_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from TB_STUDENTTUITION
+		where 
+			STUDENTTUITION_ID = #{STUDENTTUITION_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  TB_STUDENTTUITION
+			set 
+				CLASSINFO_ID = #{CLASSINFO_ID},
+				CLASS_NAME = #{CLASS_NAME},
+				STUDENT_ID = #{STUDENT_ID},
+				NAME = #{NAME},
+				AMOUNT = #{AMOUNT},
+				TUITION_EXPIRE_TIME = #{TUITION_EXPIRE_TIME},
+				TUITION_PAY_TIME = #{TUITION_PAY_TIME},
+			STUDENTTUITION_ID = STUDENTTUITION_ID
+			where 
+				STUDENTTUITION_ID = #{STUDENTTUITION_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			CLASSINFO_ID,	
+			CLASS_NAME,	
+			STUDENT_ID,	
+			NAME,	
+			AMOUNT,	
+			TUITION_EXPIRE_TIME,	
+			TUITION_PAY_TIME,	
+			CREATE_USER_ID,	
+			CREATE_TIME,	
+			STUDENTTUITION_ID
+		from 
+			TB_STUDENTTUITION
+		where 
+			STUDENTTUITION_ID = #{STUDENTTUITION_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.CLASSINFO_ID,	
+				a.CLASS_NAME,	
+				a.STUDENT_ID,	
+				a.NAME,	
+				a.AMOUNT,	
+				a.TUITION_EXPIRE_TIME,	
+				a.TUITION_PAY_TIME,	
+				a.CREATE_USER_ID,	
+				a.CREATE_TIME,	
+				a.STUDENTTUITION_ID
+		from 
+				TB_STUDENTTUITION a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.CLASSINFO_ID,	
+				a.CLASS_NAME,	
+				a.STUDENT_ID,	
+				a.NAME,	
+				a.AMOUNT,	
+				a.TUITION_EXPIRE_TIME,	
+				a.TUITION_PAY_TIME,	
+				a.CREATE_USER_ID,	
+				a.CREATE_TIME,	
+				a.STUDENTTUITION_ID
+		from 
+				TB_STUDENTTUITION a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from TB_STUDENTTUITION
+		where 
+			STUDENTTUITION_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>

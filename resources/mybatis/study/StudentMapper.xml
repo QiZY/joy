@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StudentMapper">
+	
+	
+	<!-- 新增-->
+	<insert id="save" parameterType="pd">
+		insert into STU_STUDENT(
+			CLASSINFO_ID,	
+			CLASS_NAME,	
+			NAME,	
+			ENG_NAME,	
+			TEL,	
+			ENTER_SCHOOL_TIME,	
+			TUITION_EXPIRE_TIME,	
+			BIRTHDY,	
+			LISTEN_LEVEL,	
+			SPEAK_LEVEL,	
+			READ_LEVEL,	
+			WRIE_LEVEL,	
+			STUDY_PLAN,	
+			SEMESTER_CHECK,	
+			TUITION,	
+			TUITION_STATUS,	
+			CREATE_USER_ID,	
+			CREATE_TIME,	
+			STATUS,	
+			STUDENT_ID
+		) values (
+			#{CLASSINFO_ID},	
+			#{CLASS_NAME},	
+			#{NAME},	
+			#{ENG_NAME},	
+			#{TEL},	
+			#{ENTER_SCHOOL_TIME},	
+			#{TUITION_EXPIRE_TIME},	
+			#{BIRTHDY},	
+			#{LISTEN_LEVEL},	
+			#{SPEAK_LEVEL},	
+			#{READ_LEVEL},	
+			#{WRIE_LEVEL},	
+			#{STUDY_PLAN},	
+			#{SEMESTER_CHECK},	
+			#{TUITION},	
+			#{TUITION_STATUS},	
+			#{CREATE_USER_ID},	
+			#{CREATE_TIME},	
+			#{STATUS},	
+			#{STUDENT_ID}
+		)
+	</insert>
+	
+	
+	<!-- 删除-->
+	<delete id="delete" parameterType="pd">
+		delete from STU_STUDENT
+		where 
+			STUDENT_ID = #{STUDENT_ID}
+	</delete>
+	
+	
+	<!-- 修改 -->
+	<update id="edit" parameterType="pd">
+		update  STU_STUDENT
+			set 
+				CLASSINFO_ID = #{CLASSINFO_ID},
+				CLASS_NAME = #{CLASS_NAME},
+				NAME = #{NAME},
+				ENG_NAME = #{ENG_NAME},
+				TEL = #{TEL},
+				ENTER_SCHOOL_TIME = #{ENTER_SCHOOL_TIME},
+				TUITION_EXPIRE_TIME = #{TUITION_EXPIRE_TIME},
+				BIRTHDY = #{BIRTHDY},
+				LISTEN_LEVEL = #{LISTEN_LEVEL},
+				SPEAK_LEVEL = #{SPEAK_LEVEL},
+				READ_LEVEL = #{READ_LEVEL},
+				WRIE_LEVEL = #{WRIE_LEVEL},
+				STUDY_PLAN = #{STUDY_PLAN},
+				SEMESTER_CHECK = #{SEMESTER_CHECK},
+				TUITION = #{TUITION},
+				TUITION_STATUS = #{TUITION_STATUS},
+			STUDENT_ID = STUDENT_ID
+			where 
+				STUDENT_ID = #{STUDENT_ID}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="pd" resultType="pd">
+		select 
+			CLASSINFO_ID,	
+			CLASS_NAME,	
+			NAME,	
+			ENG_NAME,	
+			TEL,	
+			ENTER_SCHOOL_TIME,	
+			TUITION_EXPIRE_TIME,	
+			BIRTHDY,	
+			LISTEN_LEVEL,	
+			SPEAK_LEVEL,	
+			READ_LEVEL,	
+			WRIE_LEVEL,	
+			STUDY_PLAN,	
+			SEMESTER_CHECK,	
+			TUITION,	
+			TUITION_STATUS,	
+			CREATE_USER_ID,	
+			CREATE_TIME,	
+			STATUS,	
+			STUDENT_ID
+		from 
+			STU_STUDENT
+		where 
+			STUDENT_ID = #{STUDENT_ID}
+	</select>
+	
+	
+	<!-- 列表 -->
+	<select id="datalistPage" parameterType="page" resultType="pd">
+		select
+				a.CLASSINFO_ID,	
+				a.CLASS_NAME,	
+				a.NAME,	
+				a.ENG_NAME,	
+				a.TEL,	
+				a.ENTER_SCHOOL_TIME,	
+				a.TUITION_EXPIRE_TIME,	
+				a.BIRTHDY,	
+				a.LISTEN_LEVEL,	
+				a.SPEAK_LEVEL,	
+				a.READ_LEVEL,	
+				a.WRIE_LEVEL,	
+				a.STUDY_PLAN,	
+				a.SEMESTER_CHECK,	
+				a.TUITION,	
+				a.TUITION_STATUS,	
+				a.CREATE_USER_ID,	
+				a.CREATE_TIME,	
+				a.STATUS,	
+				a.STUDENT_ID
+		from 
+				STU_STUDENT a
+	</select>
+	
+	<!-- 列表(全部) -->
+	<select id="listAll" parameterType="pd" resultType="pd">
+		select
+				a.CLASSINFO_ID,	
+				a.CLASS_NAME,	
+				a.NAME,	
+				a.ENG_NAME,	
+				a.TEL,	
+				a.ENTER_SCHOOL_TIME,	
+				a.TUITION_EXPIRE_TIME,	
+				a.BIRTHDY,	
+				a.LISTEN_LEVEL,	
+				a.SPEAK_LEVEL,	
+				a.READ_LEVEL,	
+				a.WRIE_LEVEL,	
+				a.STUDY_PLAN,	
+				a.SEMESTER_CHECK,	
+				a.TUITION,	
+				a.TUITION_STATUS,	
+				a.CREATE_USER_ID,	
+				a.CREATE_TIME,	
+				a.STATUS,	
+				a.STUDENT_ID
+		from 
+				STU_STUDENT a
+	</select>
+	
+	<!-- 批量删除 -->
+	<delete id="deleteAll" parameterType="String">
+		delete from STU_STUDENT
+		where 
+			STUDENT_ID in
+		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                 #{item}
+		</foreach>
+	</delete>
+	
+</mapper>
